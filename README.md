@@ -1,16 +1,13 @@
----
-title: Using `git`
----
-
+# Using `git`
 This is an introductory repository designed to help understand how the version control program git works and how it can help make collaborating and working on projects easier.
 
-For easier viewing, an [html version](https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html) of the README is also available.
+For easier viewing, an **[HTML version](https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html)** of the README is also available, which is the recommended version to view this tutorial.
 
-<h2 id="why-use-git">Why use `git`?<a href="#why-use-git"></a></h2>
-For any sort of project -- not necessarily just programming -- a version control program helps keep track of what changes were made to the project. Such programs eliminate the need to manually backup projects, and allows you to see previous versions of your project. Because of this, git is a really popular choice to maintain a project.
+## Why use `git`?
+For any sort of project -- not necessarily just programming -- a version control program helps keep track of changes made to said project. Such programs eliminate the need to manually create backups for the project, and allows you to see previous revisions of your files. Because of this, `git`, a version control program, is a really popular choice to maintain a project.
 
 ## How it works
-Very simply, git keeps track of your edits in a graph. You can check out nodes of this graph to view the previous edits on the project, or commit new nodes to add new changes. These graphs can then be synchronized to cloud services, like github or BitBucket.
+Very simply, git keeps track of your edits in a graph. You can check out nodes of this graph to view the previous edits on the project, or commit new nodes to add new changes. These graphs can then be synchronized to cloud services, like Github or BitBucket.
 
 ## How do I use `git`?
 We will go over the terminal version of git in this tutorial, although you can do everything mentioned here over in a GUI version of git as well.
