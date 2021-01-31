@@ -274,6 +274,44 @@ HEAD is now at 3405081 feat: added things
 
 We have not explained what `HEAD` is, but you can think of it as a pointer that points to either a branch or a commit. All your work is actually stored in this `HEAD` pointer, and actions like committing depend on it. `HEAD~1` is just a pointer to the commit 1 before the commit `HEAD` points to; we tell git to act as if the tip of our branch is `HEAD~1` instead. If we want to point to the previous commit, we can also use the notation `HEAD^`, and if we have a specific commit that we want to roll back to, we can just use its id, like the ones from before; both long and short ids will work fine.
 
-Let's say that you were too late in recognizing your mistake, and you pushed the commit you wanted to delete. In this case, it is extremely dangerous to reset the pushed commit, as other people may have already pulled it to their machines, and the reset may mess with their workflow. Instead, git has another feature that allows us to create another commit that basically reverts all the changes we made in the erronous commit, appropriately named `git revert`. 
+Let's say that you were too late in recognizing your mistake, and you pushed the commit you wanted to delete. In this case, it is extremely dangerous to reset the pushed commit, as other people may have already pulled it to their machines, and the reset may mess with their workflow. Instead, git has another feature that allows us to create another commit that basically reverts all the changes we made in the erronous commit, appropriately named `git revert`. Let's say that the change we want to revert is pointed to by our `HEAD`. Then we can tell git to revert the commit by
+<pre>
+$ <kbd>git revert HEAD</kbd>
+[master fc8dad0] Revert "chore: setting up git-revert again"
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre>
 
-This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc.
+If we were successful with creating our revert commit, we can push it upstream for people to pull and revert our changes. Git will prompt us to enter a custom message for our revert, but it automatically has one at the ready. We do not necessarily have to revert only one commit; if it is possible, git can revert back to any commit we point to, whether by a pointer or by the commit's id.
+
+### Checking differences 
+At any time, you may want to check what you have changed in your workspace, or may want to compare commits to see what the difference is between them. For this, you can use `git diff`. If you have changes in your workspace, `diff` gives you something like
+<pre>
+$ <kbd>git diff</kbd>
+diff --git a/README.html b/README.html
+index 2dc9295..3ef35bc 100644
+--- a/README.html
++++ b/README.html
+@@ -252,7 +252,13 @@ SOME CHANGES
+<kbd>+SOME MORE CHANGES</kbd>
+-REMOVED CONTENT
+</pre>
+
+You'll see three different types of lines: ones that start with '+', ones that start with '-' and ones that start normally, which respectively indicate that a new line has been added, a line has been removed and the line remains unchanged. You'll also see that the header has some relevant information. You'll see the command executed, where the old file is in the 'directory' `a` new one is in `b` (these are not really directories, but git writes it like this for easier reading). The line with `@@` shows what line we were on, how many lines were in the original section, what line we are on in the final edit and how many lines the final section contains. In this case, our section started on line 252 and consisted of 7 lines, and by the time we were finished with our edit, it again started on line 252 and consisted of 13 lines. 
+You can use the `diff` command on any two pointers, like commit ids or `HEAD~k`.
+
+### Pull requests
+One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what's called a 'pull request'. Let's say that we have a local change we would like to create a pull request for. 
+
+This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don't know and things we haven't covered (which is a lot), but you can always refer to:
+* git itself by using `git --help`. If you have a specific command you don't understand, you can also do `git <command> --help` to get the specific help page of that command.
+* Online documentation, like [this website maintained by the Git community](https://git-scm.com/docs/). 
+
+You're obviously not restricted to these, however. If you want to check out more that is related to git, look at the resources section.
+
+## Some tips
+
+## Resources
+You can check out the following resources to help you learn more about git:
+* [Learn git branching](https://learngitbranching.js.org/), a website designed like a game in which you solve levels about using git, with a helpful graph view to help you visualize git's graphs.
+* [Learn git in y minutes](https://learnxinyminutes.com/docs/git/), a cheat-sheet website that highlights the uses of specific languages, along with tools like git.
+* [gittutorial](https://git-scm.com/docs/gittutorial), a tutorial on git (similar to this one) provided by SCM that explains the commands more thorough than this one.
