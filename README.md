@@ -1,9 +1,12 @@
-# Using `git`
+---
+title: Using `git`
+---
+
 This is an introductory repository designed to help understand how the version control program git works and how it can help make collaborating and working on projects easier.
 
 For easier viewing, an [html version](https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html) of the README is also available.
 
-## Why use `git`?
+<h2 id="why-use-git">Why use `git`?<a href="#why-use-git"></a></h2>
 For any sort of project -- not necessarily just programming -- a version control program helps keep track of what changes were made to the project. Such programs eliminate the need to manually backup projects, and allows you to see previous versions of your project. Because of this, git is a really popular choice to maintain a project.
 
 ## How it works
@@ -345,8 +348,45 @@ You'll see three different types of lines: ones that start with '+', ones that s
 You can use the `diff` command on any two pointers, like commit ids or `HEAD~k`.
 
 ### Pull requests
-One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what's called a 'pull request'. It is possible to use git directly for pull requests, but it is much easier to do it through Github, which we'll use for this section of the tutorial. Here are the usual steps for creating a pull request:
-* Let's say that you have permission to push to another branch, let's say the branch `names`.
+One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what's called a 'pull request'. It is possible to use git directly for pull requests, but it is much easier to do it through Github, which we'll use for this section of the tutorial. 
+
+#### Creating a pull request in a project where you can push upstream
+Here are the usual steps for creating a pull request:
+
+* If you haven't created any commits you want to push yet, create a new branch and create your commits in that branch. If you have, switch to that branch, assuming that you have permission to push onto that branch, let's say `names`.
+
+* Push the commit you want to push onto the remote; the push command will push `names` to `origin/names` by default.
+
+* After you've successfully pushed your commit onto the upstream branch, you will be able to see the branch `names` in the Github repository, namely at '[https://github.com/utkuboduroglu/using-git-test/tree/names](https://github.com/utkuboduroglu/using-git-test/tree/names)'.
+
+* Now, you can create a pull request for the commit we made from [the pulls page in my repo](https://github.com/utkuboduroglu/using-git-test/pulls).
+  - Press the button labeled 'New pull request'.
+  - Change the compare branch to `names`.
+  - After Github confirms that we're able to merge, press the 'Create pull request' button.
+  - In the next page, specify the one-line description of the commit and provide a meaningful explanation as to what the commit is about and why it should be pulled.
+  - Hit 'Create pull request' to create your pull request.
+
+After this point, it is up to the maintainers of the branch to look over your pull request, and decide on pulling or not pulling the commit.
+
+#### Creating a pull request in a project where you CANNOT push upstream
+If you have no permissions in the project whatsoever, you can still send a pull request, but the process is slightly different. Instead of directly creating a commit and pushing it upstream, you instead have to push your commit to something called a 'fork' of the repository. Here are the steps for creating a pull request:
+
+* Create a fork of the repository you want to create a pull request for. Let's consider creating a pull request for my repository. Visit [https://github.com/utkuboduroglu/using-git-test](https://github.com/utkuboduroglu/using-git-test) in a web browser. Sign in to your Github account. Over on the right upper corner, there is a button labeled '`Fork`'. Press it.
+
+* After pressing the fork button, Github will create a repository in your account that is forked from mine. `clone` that repository onto your machine using its link.
+
+* After you clone the repo onto your machine, `checkout` the branch `names` (you may have to use `-b` while using `checkout`) and make your changes and commit them.
+
+* With your `HEAD` pointing to the commit you want to create a pull request for, `push` your commit upstream to your own repo.
+
+* After you've pushed your commit to your fork, the steps are the same as the ones above; you'll be prompted to create a pull request for the initial repo you forked from.
+
+### Creating your own pull request
+Let's practice creating your own pull request. Using some of the things you've learned from this page, create a pull request to pull your changes to the `names` branch and edit the line below to state your name and what you thought about the tutorial (be honest `:)` ).
+
+```
+[utku] I had a lot of fun writing this!
+```
 
 This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don't know and things we haven't covered (which is a lot), but you can always refer to:
 * git itself by using `git --help`. If you have a specific command you don't understand, you can also do `git <command> --help` to get the specific help page of that command.
@@ -355,9 +395,15 @@ This is the basic workflow while using git: we create commits from the changes w
 You're obviously not restricted to these, however. If you want to check out more that is related to git, look at the resources section.
 
 ## Some tips
+Writing meaningful messages for commits and pull requests is really important for other contributors to understand what the commits/requests are about. [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) is a commit description standard that helps fix some of the problems that occur with ordinary commit messages. It is recommended that you create commit messages following this convention. **Please use conventional commits while writing commit messages.** It helps with readability and [parsing](https://github.com/conventional-changelog/conventional-changelog) commit messages becomes easier.
 
 ## Resources
 You can check out the following resources to help you learn more about git:
+
 * [Learn git branching](https://learngitbranching.js.org/), a website designed like a game in which you solve levels about using git, with a helpful graph view to help you visualize git's graphs.
+
 * [Learn git in y minutes](https://learnxinyminutes.com/docs/git/), a cheat-sheet website that highlights the uses of specific languages, along with tools like git.
+
 * [gittutorial](https://git-scm.com/docs/gittutorial), a tutorial on git (similar to this one) provided by SCM that explains the commands more thorough than this one.
+
+* The repository [firstcontributions/first-contributions](https://github.com/firstcontributions/first-contributions) is a great repository for practicing creating pull requests.
