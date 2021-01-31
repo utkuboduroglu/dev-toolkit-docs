@@ -265,6 +265,51 @@ Fast-forward
 
 If you have any problems while merging, git will tell you that you have a merge conflict. This is what git referred to when we tried to push our commit upstream and we were behind. You may have noticed that git had 'Fast-forward' in the merge output message. This is not that important for now, but we will get to this later on.
 
+### Stashing changes
+Let's say that you are working on something in your current branch and you have to do something that would change your working directory, like switching to another branch or pulling. You definitely don't want to restore your changes, but you also have to do what you were doing. Git offers a very useful command for this: `stash`. As the name implies, git can stash your changes so you can do whatever you wanted to do, and give you your changes back when you're done. You can use the command `git stash` directly to stash whatever changes you've made but not comitted.
+<pre>
+$ <kbd>git status</kbd>
+On branch markdown-changes
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+        new file:   oldfile
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   newfile
+$ <kbd>git stash</kbd>
+Saved working directory and index state WIP on markdown-changes: e08328f Merge branch 'master' into markdown-changes
+$ <kbd>git status</kbd>
+On branch markdown-changes
+nothing to commit, working tree clean
+</pre>
+And to recover your changes later on,
+<pre>
+$ <kbd>git stash pop</kbd>
+On branch markdown-changes
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+        new file:   oldfile
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   newfile
+
+Dropped refs/stash@{0} (735838eebf551a9b87567e1dbc136049eee84590)
+</pre>
+One cool thing about stashes is just like you can checkout branches and commits, you can also `checkout` stashes! If you had any stashes, you can view them with `git stash list` and checkout the stash you want with its id:
+<pre>
+$ <kbd>git stash list</kbd>
+stash@{0}: WIP on markdown-changes: e08328f Merge branch 'master' into markdown-changes
+$ <kbd>git checkout stash@{0}</kbd>
+Note: switching to 'stash@{0}'.
+
+HEAD is now at b07b925 WIP on markdown-changes: e08328f Merge branch 'master' into markdown-changes
+</pre>
+You can undo the checkout with `git switch -`.
+
 ### Making mistakes
 No one is infallible. We all make mistakes from time to time, and there will probably come a time when you've made a mistake and want to fix it. For example, we have previously merged `master` and `markdown-changes`, and let's say that since then, we've added a new commit onto `master`. We have later on decided that this commit should not be in our project and wish to remove it. We can use the command `git reset` to do this. Although reset does many other things, for our purposes, the following command 'forgets' our most recent commit:
 <pre>
@@ -300,7 +345,8 @@ You'll see three different types of lines: ones that start with '+', ones that s
 You can use the `diff` command on any two pointers, like commit ids or `HEAD~k`.
 
 ### Pull requests
-One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what's called a 'pull request'. Let's say that we have a local change we would like to create a pull request for. 
+One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what's called a 'pull request'. It is possible to use git directly for pull requests, but it is much easier to do it through Github, which we'll use for this section of the tutorial. Here are the usual steps for creating a pull request:
+* Let's say that you have permission to push to another branch, let's say the branch `names`.
 
 This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don't know and things we haven't covered (which is a lot), but you can always refer to:
 * git itself by using `git --help`. If you have a specific command you don't understand, you can also do `git <command> --help` to get the specific help page of that command.

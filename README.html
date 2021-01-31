@@ -245,6 +245,50 @@ Fast-forward
  1 file changed, 1 insertion(+)
 </pre>
 <p>If you have any problems while merging, git will tell you that you have a merge conflict. This is what git referred to when we tried to push our commit upstream and we were behind. You may have noticed that git had ‘Fast-forward’ in the merge output message. This is not that important for now, but we will get to this later on.</p>
+<h3 id="stashing-changes">Stashing changes</h3>
+Let’s say that you are working on something in your current branch and you have to do something that would change your working directory, like switching to another branch or pulling. You definitely don’t want to restore your changes, but you also have to do what you were doing. Git offers a very useful command for this: <code>stash</code>. As the name implies, git can stash your changes so you can do whatever you wanted to do, and give you your changes back when you’re done. You can use the command <code>git stash</code> directly to stash whatever changes you’ve made but not comitted.
+<pre>
+$ <kbd>git status</kbd>
+On branch markdown-changes
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        new file:   oldfile
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+        modified:   newfile
+$ <kbd>git stash</kbd>
+Saved working directory and index state WIP on markdown-changes: e08328f Merge branch &#39;master&#39; into markdown-changes
+$ <kbd>git status</kbd>
+On branch markdown-changes
+nothing to commit, working tree clean
+</pre>
+And to recover your changes later on,
+<pre>
+$ <kbd>git stash pop</kbd>
+On branch markdown-changes
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        new file:   oldfile
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+        modified:   newfile
+
+Dropped refs/stash@{0} (735838eebf551a9b87567e1dbc136049eee84590)
+</pre>
+One cool thing about stashes is just like you can checkout branches and commits, you can also <code>checkout</code> stashes! If you had any stashes, you can view them with <code>git stash list</code> and checkout the stash you want with its id:
+<pre>
+$ <kbd>git stash list</kbd>
+stash@{0}: WIP on markdown-changes: e08328f Merge branch &#39;master&#39; into markdown-changes
+$ <kbd>git checkout stash@{0}</kbd>
+Note: switching to &#39;stash@{0}&#39;.
+
+HEAD is now at b07b925 WIP on markdown-changes: e08328f Merge branch &#39;master&#39; into markdown-changes
+</pre>
+<p>You can undo the checkout with <code>git switch -</code>.</p>
 <h3 id="making-mistakes">Making mistakes</h3>
 No one is infallible. We all make mistakes from time to time, and there will probably come a time when you’ve made a mistake and want to fix it. For example, we have previously merged <code>master</code> and <code>markdown-changes</code>, and let’s say that since then, we’ve added a new commit onto <code>master</code>. We have later on decided that this commit should not be in our project and wish to remove it. We can use the command <code>git reset</code> to do this. Although reset does many other things, for our purposes, the following command ‘forgets’ our most recent commit:
 <pre>
@@ -273,6 +317,9 @@ index 2dc9295..3ef35bc 100644
 </pre>
 <p>You’ll see three different types of lines: ones that start with ‘+’, ones that start with ‘-’ and ones that start normally, which respectively indicate that a new line has been added, a line has been removed and the line remains unchanged. You’ll also see that the header has some relevant information. You’ll see the command executed, where the old file is in the ‘directory’ <code>a</code> new one is in <code>b</code> (these are not really directories, but git writes it like this for easier reading). The line with <code>@@</code> shows what line we were on, how many lines were in the original section, what line we are on in the final edit and how many lines the final section contains. In this case, our section started on line 252 and consisted of 7 lines, and by the time we were finished with our edit, it again started on line 252 and consisted of 13 lines. You can use the <code>diff</code> command on any two pointers, like commit ids or <code>HEAD~k</code>.</p>
 <h3 id="pull-requests">Pull requests</h3>
+<p>One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what’s called a ‘pull request’.</p>
+<h4 id="using-request-pull">Using <code>request-pull</code></h4>
+<p>Let’s say that we have a local change we would like to create a pull request for on our branch <code>master</code>. Let’s say that we want this commit to be in the remote branch <code>names</code>. Then we can create a pull-request to push our commit to <code>origin/names</code> by the <code>git request-pull</code> command:</p>
 <p>This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don’t know and things we haven’t covered (which is a lot), but you can always refer to: * git itself by using <code>git --help</code>. If you have a specific command you don’t understand, you can also do <code>git &lt;command&gt; --help</code> to get the specific help page of that command. * Online documentation, like <a href="https://git-scm.com/docs/">this website maintained by the Git community</a>.</p>
 <p>You’re obviously not restricted to these, however. If you want to check out more that is related to git, look at the resources section.</p>
 <h2 id="some-tips">Some tips</h2>
