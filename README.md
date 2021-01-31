@@ -385,6 +385,9 @@ Let's practice creating your own pull request. Using some of the things you've l
 [utku] I had a lot of fun writing this!
 ```
 
+#### Helping out with this tutorial
+If you have any changes you think are necessary, or anything you think this tutorial needs, you can submit your changes by sending me a pull request. If I consider your changes appropriate, I will accept them.
+
 This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don't know and things we haven't covered (which is a lot), but you can always refer to:
 * git itself by using `git --help`. If you have a specific command you don't understand, you can also do `git <command> --help` to get the specific help page of that command.
 * Online documentation, like [this website maintained by the Git community](https://git-scm.com/docs/). 
