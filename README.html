@@ -19,7 +19,40 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="using-git">Using git</h1>
+<h1 id="using-git">Using <code>git</code></h1>
 <p>This is an introductory repository designed to help understand how the version control program <code>git</code> works and how it can help make collaborating and working on projects easier.</p>
+<p>For easier viewing, an <a href="https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html">html version</a> of the README is also available.</p>
+<h2 id="why-use-git">Why use git?</h2>
+<p>For any sort of project – not necessarily just programming – a version control program helps keep track of what changes were made to the project. Such programs eliminate the need to manually backup projects, and allows you to see previous versions of your project. Because of this, git is a really popular choice to maintain a project.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Very simply, git keeps track of your edits in a graph. You can check out nodes of this graph to view the previous edits on the project, or commit new nodes to add new changes. These graphs can then be synchronized to cloud services, like Github or BitBucket.</p>
+<h2 id="how-do-i-use-git">How do I use <code>git</code>?</h2>
+<p>We will go over the terminal version of git in this tutorial, although you can do everything mentioned here over in a GUI version of git as well.</p>
+<p>If you get lost at any step, you can always check out <code>git --help</code> to see a help page provided by the program itself.</p>
+<h3 id="initializing-our-repository">Initializing our repository</h3>
+<p>In order to use git, we need to tell it that we intend to use a directory as a project. We use the command <strong>git init</strong> to tell git that we have a project in our current directory:</p>
+<pre>
+$ <kbd>git init</kbd>
+Initialized empty Git repository in .../project/.git/
+</pre>
+<p>When we run the command, we see the prompt above telling us that we created a git repo in the <code>project/</code> directory.</p>
+<h3 id="cloning-an-already-existing-repository">Cloning an already existing repository</h3>
+<p>If the project you’re going to be working on already exists, you can instead ‘clone’ that project onto your machine. For example, let’s say that you wanted to clone this repository onto your machine. To do this, you would use the clone command of git, and specify a path (either local or online) to a git repository to clone it:</p>
+<pre>
+$ <kbd>git clone https://github.com/utkuboduroglu/using-git-test</kbd>
+Cloning into &#39;using-git-test&#39;...
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 4 (delta 1), pack-reused 0
+Receiving objects: 100% (4/4), done.
+Resolving deltas: 100% (1/1), done.
+</pre>
+<p>Although your prompt may not look exactly the same, this is the output you would get, showing where you cloned the project to, and how many objects you cloned. As an exercise, <strong>try cloning this repository onto your machine.</strong> We will use this repository as an example of how a git workflow works.</p>
+<h3 id="adding-changes">Adding changes</h3>
+<p>After you either created or cloned your repository, you may want to make some edits and tell git to keep track of those edits. For example, open this <code>README.md</code> file in a text editor and change the line below:</p>
+<pre>
+<kbd> CHANGE ME </kbd>
+</pre>
 </body>
 </html>
