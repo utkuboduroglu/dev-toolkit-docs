@@ -44,7 +44,7 @@
 </ul>
 </nav>
 <p>This is an introductory repository designed to help understand how the version control program git works and how it can help make collaborating and working on projects easier.</p>
-<p>For easier viewing, an <strong><a href="https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html">HTML version</a></strong> of the README is also available, which is the recommended version to view this tutorial.</p>
+<p>For easier viewing, an <strong><a href="https://htmlpreview.github.io/?https://github.com/utkuboduroglu/dev-toolkit-docs/using-git/blob/master/README.html">HTML version</a></strong> of the README is also available, which is the recommended version to view this tutorial.</p>
 <h2 id="why-use-git">Why use <code>git</code>?</h2>
 <p>For any sort of project – not necessarily just programming – a version control program helps keep track of changes made to said project. Such programs eliminate the need to manually create backups for the project, and allows you to see previous revisions of your files. Because of this, <code>git</code>, a version control program, is a really popular choice to maintain a project.</p>
 <h2 id="how-it-works">How it works</h2>
@@ -62,8 +62,8 @@ Initialized empty git repository in .../project/.git/
 <h3 id="cloning-an-already-existing-repository">Cloning an already existing repository</h3>
 <p>If the project you’re going to be working on already exists, you can instead ‘clone’ that project onto your machine. For example, let’s say that you wanted to clone this repository onto your machine. To do this, you would use the clone command of git, and specify a path (either local or online) to a git repository to clone it:</p>
 <pre>
-$ <kbd>git clone https://github.com/utkuboduroglu/using-git-test</kbd>
-Cloning into &#39;using-git-test&#39;...
+$ <kbd>git clone https://github.com/utkuboduroglu/dev-toolkit-docs/using-git</kbd>
+Cloning into &#39;using-git&#39;...
 remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (3/3), done.
@@ -116,14 +116,14 @@ Right about now, you may want to send your commit to somewhere else, maybe your 
 $ <kbd>git remote</kbd>
 origin
 $ <kbd>git remote get-url origin</kbd>
-https://github.com/utkuboduroglu/using-git-test
+https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
 </pre>
 Now, let’s say that you have a change in <code>master</code>, and you want to send this change upstream to <code>origin/master</code>. You can then do <code>git push</code> to push your changes (provided you’re currently in the branch <code>master</code>):
 <pre>
 $ <kbd>git push origin master</kbd>
-To https://github.com/utkuboduroglu/using-git-test
+To https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
  ! [rejected]        master -&gt; master (fetch first)
-error: failed to push some refs to &#39;https://github.com/utkuboduroglu/using-git-test&#39;
+error: failed to push some refs to &#39;https://github.com/utkuboduroglu/dev-toolkit-docs/using-git&#39;
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -138,7 +138,7 @@ remote: Counting objects: 100% (11/11), done.
 remote: Compressing objects: 100% (5/5), done.
 remote: Total 8 (delta 3), reused 8 (delta 3), pack-reused 0
 Unpacking objects: 100% (8/8), 6.15 KiB | 98.00 KiB/s, done.
-From https://github.com/utkuboduroglu/using-git-test
+From https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
    d20ef60..6987016  master     -&gt; origin/master
 Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
@@ -197,7 +197,7 @@ Changes to be committed:
 Now when you run <code>git commit</code> to resolve the conflict, you can optionally enter a description, but git already creates one for you. You’ll receive the following messages:
 <pre>
 $ <kbd>git commit</kbd>
-[master bb63a61] Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git-test
+[master bb63a61] Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
 $ <kbd>git status</kbd>
 On branch master
 Your branch is ahead of &#39;origin/master&#39; by 2 commits.
@@ -213,7 +213,7 @@ Merge: 8cef6be 6987016
 Author: Utku Boduroglu <utkubod@gmail.com>
 Date:   Mon Feb 1 00:04:04 2021 +0300
 
-    Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git-test
+    Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
 
 commit 6987016029c64cd2a25f1f898cddc688bd94c514 (origin/master, origin/HEAD)
 Author: Utku Boduroglu <utkubod@gmail.com>
@@ -231,7 +231,7 @@ Compressing objects: 100% (4/4), done.
 Writing objects: 100% (4/4), 530 bytes | 530.00 KiB/s, done.
 Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/utkuboduroglu/using-git-test
+To https://github.com/utkuboduroglu/dev-toolkit-docs/using-git
    6987016..bb63a61  master -&gt; master
 </pre>
 <h3 id="git-branches-and-merging">Git branches and merging</h3>
@@ -346,8 +346,8 @@ index 2dc9295..3ef35bc 100644
 <ul>
 <li><p>If you haven’t created any commits you want to push yet, create a new branch and create your commits in that branch. If you have, switch to that branch, assuming that you have permission to push onto that branch, let’s say <code>names</code>.</p></li>
 <li><p>Push the commit you want to push onto the remote; the push command will push <code>names</code> to <code>origin/names</code> by default.</p></li>
-<li><p>After you’ve successfully pushed your commit onto the upstream branch, you will be able to see the branch <code>names</code> in the Github repository, namely at ‘<a href="https://github.com/utkuboduroglu/using-git-test/tree/names">https://github.com/utkuboduroglu/using-git-test/tree/names</a>’.</p></li>
-<li><p>Now, you can create a pull request for the commit we made from <a href="https://github.com/utkuboduroglu/using-git-test/pulls">the pulls page in my repo</a>.</p>
+<li><p>After you’ve successfully pushed your commit onto the upstream branch, you will be able to see the branch <code>names</code> in the Github repository, namely at ‘<a href="https://github.com/utkuboduroglu/dev-toolkit-docs/using-git/tree/names">https://github.com/utkuboduroglu/dev-toolkit-docs/using-git/tree/names</a>’.</p></li>
+<li><p>Now, you can create a pull request for the commit we made from <a href="https://github.com/utkuboduroglu/dev-toolkit-docs/using-git/pulls">the pulls page in my repo</a>.</p>
 <ul>
 <li>Press the button labeled ‘New pull request’.</li>
 <li>Change the compare branch to <code>names</code>.</li>
@@ -360,7 +360,7 @@ index 2dc9295..3ef35bc 100644
 <h4 id="creating-a-pull-request-in-a-project-where-you-cannot-push-upstream">Creating a pull request in a project where you CANNOT push upstream</h4>
 <p>If you have no permissions in the project whatsoever, you can still send a pull request, but the process is slightly different. Instead of directly creating a commit and pushing it upstream, you instead have to push your commit to something called a ‘fork’ of the repository. Here are the steps for creating a pull request:</p>
 <ul>
-<li><p>Create a fork of the repository you want to create a pull request for. Let’s consider creating a pull request for my repository. Visit <a href="https://github.com/utkuboduroglu/using-git-test">https://github.com/utkuboduroglu/using-git-test</a> in a web browser. Sign in to your Github account. Over on the right upper corner, there is a button labeled ‘<code>Fork</code>’. Press it.</p></li>
+<li><p>Create a fork of the repository you want to create a pull request for. Let’s consider creating a pull request for my repository. Visit <a href="https://github.com/utkuboduroglu/dev-toolkit-docs/using-git">https://github.com/utkuboduroglu/dev-toolkit-docs/using-git</a> in a web browser. Sign in to your Github account. Over on the right upper corner, there is a button labeled ‘<code>Fork</code>’. Press it.</p></li>
 <li><p>After pressing the fork button, Github will create a repository in your account that is forked from mine. <code>clone</code> that repository onto your machine using its link.</p></li>
 <li><p>After you clone the repo onto your machine, <code>checkout</code> the branch <code>names</code> (you may have to use <code>-b</code> while using <code>checkout</code>) and make your changes and commit them.</p></li>
 <li><p>With your <code>HEAD</code> pointing to the commit you want to create a pull request for, <code>push</code> your commit upstream to your own repo.</p></li>
