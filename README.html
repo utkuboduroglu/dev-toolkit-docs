@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>README</title>
+  <title>Using git</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -19,13 +19,36 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="using-git">Using <code>git</code></h1>
+<header id="title-block-header">
+<h1 class="title">Using <code>git</code></h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#why-use-git">Why use <code>git</code>?</a></li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#how-do-i-use-git">How do I use <code>git</code>?</a>
+<ul>
+<li><a href="#initializing-our-repository">Initializing our repository</a></li>
+<li><a href="#cloning-an-already-existing-repository">Cloning an already existing repository</a></li>
+<li><a href="#adding-changes">Adding changes</a></li>
+<li><a href="#changes-sending-and-receiving-changes">Changes, sending and receiving changes</a></li>
+<li><a href="#git-branches-and-merging">Git branches and merging</a></li>
+<li><a href="#stashing-changes">Stashing changes</a></li>
+<li><a href="#making-mistakes">Making mistakes</a></li>
+<li><a href="#checking-differences">Checking differences</a></li>
+<li><a href="#pull-requests">Pull requests</a></li>
+<li><a href="#creating-your-own-pull-request">Creating your own pull request</a></li>
+</ul></li>
+<li><a href="#some-tips">Some tips</a></li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+</nav>
 <p>This is an introductory repository designed to help understand how the version control program git works and how it can help make collaborating and working on projects easier.</p>
-<p>For easier viewing, an <a href="https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git-test/blob/master/README.html">html version</a> of the README is also available.</p>
+<p>For easier viewing, an <strong><a href="https://htmlpreview.github.io/?https://github.com/utkuboduroglu/using-git/blob/master/README.html">HTML version</a></strong> of the README is also available, which is the recommended version to view this tutorial.</p>
 <h2 id="why-use-git">Why use <code>git</code>?</h2>
-<p>For any sort of project – not necessarily just programming – a version control program helps keep track of what changes were made to the project. Such programs eliminate the need to manually backup projects, and allows you to see previous versions of your project. Because of this, git is a really popular choice to maintain a project.</p>
+<p>For any sort of project – not necessarily just programming – a version control program helps keep track of changes made to said project. Such programs eliminate the need to manually create backups for the project, and allows you to see previous revisions of your files. Because of this, <code>git</code>, a version control program, is a really popular choice to maintain a project.</p>
 <h2 id="how-it-works">How it works</h2>
-<p>Very simply, git keeps track of your edits in a graph. You can check out nodes of this graph to view the previous edits on the project, or commit new nodes to add new changes. These graphs can then be synchronized to cloud services, like github or BitBucket.</p>
+<p>Very simply, git keeps track of your edits in a graph. You can check out nodes of this graph to view the previous edits on the project, or commit new nodes to add new changes. These graphs can then be synchronized to cloud services, like Github or BitBucket.</p>
 <h2 id="how-do-i-use-git">How do I use <code>git</code>?</h2>
 <p>We will go over the terminal version of git in this tutorial, although you can do everything mentioned here over in a GUI version of git as well.</p>
 <p>If you get lost at any step, you can always check out <code>git --help</code> to see a help page provided by the program itself.</p>
@@ -39,8 +62,8 @@ Initialized empty git repository in .../project/.git/
 <h3 id="cloning-an-already-existing-repository">Cloning an already existing repository</h3>
 <p>If the project you’re going to be working on already exists, you can instead ‘clone’ that project onto your machine. For example, let’s say that you wanted to clone this repository onto your machine. To do this, you would use the clone command of git, and specify a path (either local or online) to a git repository to clone it:</p>
 <pre>
-$ <kbd>git clone https://github.com/utkuboduroglu/using-git-test</kbd>
-Cloning into &#39;using-git-test&#39;...
+$ <kbd>git clone https://github.com/utkuboduroglu/using-git</kbd>
+Cloning into &#39;using-git&#39;...
 remote: Enumerating objects: 4, done.
 remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (3/3), done.
@@ -93,14 +116,14 @@ Right about now, you may want to send your commit to somewhere else, maybe your 
 $ <kbd>git remote</kbd>
 origin
 $ <kbd>git remote get-url origin</kbd>
-https://github.com/utkuboduroglu/using-git-test
+https://github.com/utkuboduroglu/using-git
 </pre>
 Now, let’s say that you have a change in <code>master</code>, and you want to send this change upstream to <code>origin/master</code>. You can then do <code>git push</code> to push your changes (provided you’re currently in the branch <code>master</code>):
 <pre>
 $ <kbd>git push origin master</kbd>
-To https://github.com/utkuboduroglu/using-git-test
+To https://github.com/utkuboduroglu/using-git
  ! [rejected]        master -&gt; master (fetch first)
-error: failed to push some refs to &#39;https://github.com/utkuboduroglu/using-git-test&#39;
+error: failed to push some refs to &#39;https://github.com/utkuboduroglu/using-git&#39;
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -115,7 +138,7 @@ remote: Counting objects: 100% (11/11), done.
 remote: Compressing objects: 100% (5/5), done.
 remote: Total 8 (delta 3), reused 8 (delta 3), pack-reused 0
 Unpacking objects: 100% (8/8), 6.15 KiB | 98.00 KiB/s, done.
-From https://github.com/utkuboduroglu/using-git-test
+From https://github.com/utkuboduroglu/using-git
    d20ef60..6987016  master     -&gt; origin/master
 Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
@@ -174,7 +197,7 @@ Changes to be committed:
 Now when you run <code>git commit</code> to resolve the conflict, you can optionally enter a description, but git already creates one for you. You’ll receive the following messages:
 <pre>
 $ <kbd>git commit</kbd>
-[master bb63a61] Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git-test
+[master bb63a61] Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git
 $ <kbd>git status</kbd>
 On branch master
 Your branch is ahead of &#39;origin/master&#39; by 2 commits.
@@ -190,7 +213,7 @@ Merge: 8cef6be 6987016
 Author: Utku Boduroglu <utkubod@gmail.com>
 Date:   Mon Feb 1 00:04:04 2021 +0300
 
-    Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git-test
+    Merge branch &#39;master&#39; of https://github.com/utkuboduroglu/using-git
 
 commit 6987016029c64cd2a25f1f898cddc688bd94c514 (origin/master, origin/HEAD)
 Author: Utku Boduroglu <utkubod@gmail.com>
@@ -208,7 +231,7 @@ Compressing objects: 100% (4/4), done.
 Writing objects: 100% (4/4), 530 bytes | 530.00 KiB/s, done.
 Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/utkuboduroglu/using-git-test
+To https://github.com/utkuboduroglu/using-git
    6987016..bb63a61  master -&gt; master
 </pre>
 <h3 id="git-branches-and-merging">Git branches and merging</h3>
@@ -317,13 +340,48 @@ index 2dc9295..3ef35bc 100644
 </pre>
 <p>You’ll see three different types of lines: ones that start with ‘+’, ones that start with ‘-’ and ones that start normally, which respectively indicate that a new line has been added, a line has been removed and the line remains unchanged. You’ll also see that the header has some relevant information. You’ll see the command executed, where the old file is in the ‘directory’ <code>a</code> new one is in <code>b</code> (these are not really directories, but git writes it like this for easier reading). The line with <code>@@</code> shows what line we were on, how many lines were in the original section, what line we are on in the final edit and how many lines the final section contains. In this case, our section started on line 252 and consisted of 7 lines, and by the time we were finished with our edit, it again started on line 252 and consisted of 13 lines. You can use the <code>diff</code> command on any two pointers, like commit ids or <code>HEAD~k</code>.</p>
 <h3 id="pull-requests">Pull requests</h3>
-<p>One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what’s called a ‘pull request’.</p>
-<h4 id="using-request-pull">Using <code>request-pull</code></h4>
-<p>Let’s say that we have a local change we would like to create a pull request for on our branch <code>master</code>. Let’s say that we want this commit to be in the remote branch <code>names</code>. Then we can create a pull-request to push our commit to <code>origin/names</code> by the <code>git request-pull</code> command:</p>
+<p>One final thing we should mention is pull requests. If we do not have permission to push changes to a branch, but would like our changes to take place in that branch anyway, we can instead send what’s called a ‘pull request’. It is possible to use git directly for pull requests, but it is much easier to do it through Github, which we’ll use for this section of the tutorial.</p>
+<h4 id="creating-a-pull-request-in-a-project-where-you-can-push-upstream">Creating a pull request in a project where you can push upstream</h4>
+<p>Here are the usual steps for creating a pull request:</p>
+<ul>
+<li><p>If you haven’t created any commits you want to push yet, create a new branch and create your commits in that branch. If you have, switch to that branch, assuming that you have permission to push onto that branch, let’s say <code>names</code>.</p></li>
+<li><p>Push the commit you want to push onto the remote; the push command will push <code>names</code> to <code>origin/names</code> by default.</p></li>
+<li><p>After you’ve successfully pushed your commit onto the upstream branch, you will be able to see the branch <code>names</code> in the Github repository, namely at ‘<a href="https://github.com/utkuboduroglu/using-git/tree/names">https://github.com/utkuboduroglu/using-git/tree/names</a>’.</p></li>
+<li><p>Now, you can create a pull request for the commit we made from <a href="https://github.com/utkuboduroglu/using-git/pulls">the pulls page in my repo</a>.</p>
+<ul>
+<li>Press the button labeled ‘New pull request’.</li>
+<li>Change the compare branch to <code>names</code>.</li>
+<li>After Github confirms that we’re able to merge, press the ‘Create pull request’ button.</li>
+<li>In the next page, specify the one-line description of the commit and provide a meaningful explanation as to what the commit is about and why it should be pulled.</li>
+<li>Hit ‘Create pull request’ to create your pull request.</li>
+</ul></li>
+</ul>
+<p>After this point, it is up to the maintainers of the branch to look over your pull request, and decide on pulling or not pulling the commit.</p>
+<h4 id="creating-a-pull-request-in-a-project-where-you-cannot-push-upstream">Creating a pull request in a project where you CANNOT push upstream</h4>
+<p>If you have no permissions in the project whatsoever, you can still send a pull request, but the process is slightly different. Instead of directly creating a commit and pushing it upstream, you instead have to push your commit to something called a ‘fork’ of the repository. Here are the steps for creating a pull request:</p>
+<ul>
+<li><p>Create a fork of the repository you want to create a pull request for. Let’s consider creating a pull request for my repository. Visit <a href="https://github.com/utkuboduroglu/using-git">https://github.com/utkuboduroglu/using-git</a> in a web browser. Sign in to your Github account. Over on the right upper corner, there is a button labeled ‘<code>Fork</code>’. Press it.</p></li>
+<li><p>After pressing the fork button, Github will create a repository in your account that is forked from mine. <code>clone</code> that repository onto your machine using its link.</p></li>
+<li><p>After you clone the repo onto your machine, <code>checkout</code> the branch <code>names</code> (you may have to use <code>-b</code> while using <code>checkout</code>) and make your changes and commit them.</p></li>
+<li><p>With your <code>HEAD</code> pointing to the commit you want to create a pull request for, <code>push</code> your commit upstream to your own repo.</p></li>
+<li><p>After you’ve pushed your commit to your fork, the steps are the same as the ones above; you’ll be prompted to create a pull request for the initial repo you forked from.</p></li>
+</ul>
+<h3 id="creating-your-own-pull-request">Creating your own pull request</h3>
+<p>Let’s practice creating your own pull request. Using some of the things you’ve learned from this page, create a pull request to pull your changes to the <code>names</code> branch and edit the line below to state your name and what you thought about the tutorial (be honest <code>:)</code> ).</p>
+<pre><code>[utku] I had a lot of fun writing this!</code></pre>
+<h4 id="helping-out-with-this-tutorial">Helping out with this tutorial</h4>
+<p>If you have any changes you think are necessary, or anything you think this tutorial needs, you can submit your changes by sending me a pull request. If I consider your changes appropriate, I will accept them.</p>
 <p>This is the basic workflow while using git: we create commits from the changes we make, we push our changes upstream, we pull changes from upstream, and if we have merge conflicts, we resolve them. For a project with multiple maintainers, this turns out to be a more efficient way of working on a project in contrast to working with e-mailing zip files etc. Up to now, what we have shown is sufficient to use git for most use cases. There will probably be things you don’t know and things we haven’t covered (which is a lot), but you can always refer to: * git itself by using <code>git --help</code>. If you have a specific command you don’t understand, you can also do <code>git &lt;command&gt; --help</code> to get the specific help page of that command. * Online documentation, like <a href="https://git-scm.com/docs/">this website maintained by the Git community</a>.</p>
 <p>You’re obviously not restricted to these, however. If you want to check out more that is related to git, look at the resources section.</p>
 <h2 id="some-tips">Some tips</h2>
+<p>Writing meaningful messages for commits and pull requests is really important for other contributors to understand what the commits/requests are about. <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> is a commit description standard that helps fix some of the problems that occur with ordinary commit messages. It is recommended that you create commit messages following this convention. <strong>Please use conventional commits while writing commit messages.</strong> It helps with readability and <a href="https://github.com/conventional-changelog/conventional-changelog">parsing</a> commit messages becomes easier.</p>
 <h2 id="resources">Resources</h2>
-<p>You can check out the following resources to help you learn more about git: * <a href="https://learngitbranching.js.org/">Learn git branching</a>, a website designed like a game in which you solve levels about using git, with a helpful graph view to help you visualize git’s graphs. * <a href="https://learnxinyminutes.com/docs/git/">Learn git in y minutes</a>, a cheat-sheet website that highlights the uses of specific languages, along with tools like git. * <a href="https://git-scm.com/docs/gittutorial">gittutorial</a>, a tutorial on git (similar to this one) provided by SCM that explains the commands more thorough than this one.</p>
+<p>You can check out the following resources to help you learn more about git:</p>
+<ul>
+<li><p><a href="https://learngitbranching.js.org/">Learn git branching</a>, a website designed like a game in which you solve levels about using git, with a helpful graph view to help you visualize git’s graphs.</p></li>
+<li><p><a href="https://learnxinyminutes.com/docs/git/">Learn git in y minutes</a>, a cheat-sheet website that highlights the uses of specific languages, along with tools like git.</p></li>
+<li><p><a href="https://git-scm.com/docs/gittutorial">gittutorial</a>, a tutorial on git (similar to this one) provided by SCM that explains the commands more thorough than this one.</p></li>
+<li><p>The repository <a href="https://github.com/firstcontributions/first-contributions">firstcontributions/first-contributions</a> is a great repository for practicing creating pull requests.</p></li>
+</ul>
 </body>
 </html>
